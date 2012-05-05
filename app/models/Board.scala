@@ -31,5 +31,6 @@ object Board{
       }
       lists
     }
+  }
 
-}
+
