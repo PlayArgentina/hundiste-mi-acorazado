@@ -1,3 +1,4 @@
+
 package controllers
 
 
@@ -20,3 +21,4 @@ object BoardController extends Controller {
   }
 
 }
+

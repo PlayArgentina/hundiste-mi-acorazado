@@ -1,3 +1,4 @@
+
 package models
 
 case class Board(tiles:List[List[Tile]]) {
@@ -30,4 +31,5 @@ object Board{
       }
       lists
     }
-  }
+
+}
