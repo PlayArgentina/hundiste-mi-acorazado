@@ -28,20 +28,16 @@
 
 
     $(function() {
-
     var WS = window['MozWebSocket'] ? MozWebSocket : WebSocket
 
-    var chatSocket = new WS("ws://localhost:9000/battleRoom/connect?username=@username")
-
+    var chatSocket = new WS("ws://localhost:9000@routes.Application.connect(username)")
     var sendMessage = function() {
-    chatSocket.send(JSON.stringify(
-    {text: $("#talk").val()}
-    ))
+    chatSocket.send( $("#talk").val())
     $("#talk").val('')
     }
 
     var receiveEvent = function(event) {
-    var data = JSON.parse(event.data)
+    var data = event.data
 
     // Handle errors
     if(data.error) {
@@ -55,9 +51,9 @@
 
     // Create the message element
     var el = $('<div class="message"><span></span><p></p></div>')
-    $("span", el).text(data.user)
-    $("p", el).text(data.message)
-    $(el).addClass(data.kind)
+    $("span", el)
+    $("p", el).text(data)
+    $(el).addClass(data)
     if(data.user == '@username') $(el).addClass('me')
     $('#messages').append(el)
 

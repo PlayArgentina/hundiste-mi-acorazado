@@ -1,5 +1,5 @@
 package models
 
-case class Tile(  id:String, ship:Ship,  var alreadyFired:Boolean)  {
+case class Tile( var id:String,var ship:Ship,   var alreadyFired:Boolean)  {
 
 }

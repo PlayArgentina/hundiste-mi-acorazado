@@ -62,7 +62,7 @@ body {
     overflow: hidden;
 }
 
-#onError, #onChat {
+#onError{
     display: none;
 }
 

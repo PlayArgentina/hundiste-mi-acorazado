@@ -33,8 +33,10 @@ object Application extends Controller {
   def connect(username: String) = WebSocket.using[String] { request  =>
 
     val out : PushEnumerator[String] = Enumerator.imperative[String]()
+    println("adding player"+ username+ "asddas")
     GameController.addPlayer(username, out)
-    val in =  Iteratee.foreach[String](s => GameController.parse(username,s))
+    val in =  Iteratee.foreach[String]{s => println(s)
+      GameController.parse(username,s)}
 
      (in, out)
   }

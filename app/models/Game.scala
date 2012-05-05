@@ -17,12 +17,13 @@ class Game {
 
   def addPlayer(username: String , out : PushEnumerator[String]) = {
 
-    players + (username -> out)
+    players += (username -> out)
 
   }
 
   def calculateShot(s: String){
     //boards{s}.calculateoutcome
+   // println(players.toArray.toString())
     players{s}.push("nice shot")
     if (player1.equals(s)){
         players{player2}.push("your getting shot")
@@ -35,7 +36,8 @@ class Game {
   }
 
   def notYourTurn(s: String){
-    players{s}.push("not your turn motherfucker")
+    players.map{println}
+    players{s}.push("not your turn sonny")
   }
 
 
