@@ -4,7 +4,6 @@ import play.api._
 import libs.iteratee.{PushEnumerator, Enumerator, Iteratee}
 import libs.json.JsValue
 import play.api.mvc._
-import models.{Board}
 
 object Application extends Controller {
 
@@ -15,7 +14,7 @@ object Application extends Controller {
   def battleRoom(username: Option[String]) = Action { implicit request =>
     username.filterNot(_.isEmpty).map { username =>
 
-    if(GameController.addPlayer(username)){
+    if(GameController.checkIfGameAvailable(username)){
 
     Ok(views.html.battleRoom(username))
 
@@ -37,7 +36,7 @@ object Application extends Controller {
     GameController.addPlayer(username, out)
     val in =  Iteratee.foreach[String](s => GameController.parse(username,s))
 
-    (in, out)
+     (in, out)
   }
   
 }
