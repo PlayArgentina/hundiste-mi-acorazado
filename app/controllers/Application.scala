@@ -15,7 +15,7 @@ object Application extends Controller {
   def battleRoom(username: Option[String]) = Action { implicit request =>
     username.filterNot(_.isEmpty).map { username =>
 
-    if(BoardManager.addPlayer(username)){
+    if(GameController.addPlayer(username)){
     Ok(views.html.battleRoom(username))
     }else{
       Redirect(routes.Application.index).flashing(
@@ -27,6 +27,7 @@ object Application extends Controller {
       )
     }
   }
+
   def shoot(username: String) = WebSocket.using[String] { request  =>
 
     val in =  Iteratee.foreach[String](s => GameController.parse(username,s))
