@@ -30,7 +30,7 @@ object GameController extends Controller {
   }
 
 
-  def addPlayer(userName : String){
+  def addPlayer(userName : String):Boolean={
     if (game.player1 != Nil){
       game.player1 = userName
       true
