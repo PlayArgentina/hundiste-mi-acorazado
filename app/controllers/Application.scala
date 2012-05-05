@@ -28,8 +28,11 @@ object Application extends Controller {
     }
   }
 
-  def shoot(username: String) = WebSocket.using[String] { request  =>
 
+  def shoot(username: String) = WebSocket.using[String] { request  =>
+    /*var members = Map.empty[String, PushEnumerator[JsValue]]
+    members = members + (username -> channel)*/
+    BoardManager.setChannelForUser(username,chanel);
     val in =  Iteratee.foreach[String](s => GameController.parse(username,s))
     //pasar a shoot
     // Send a single 'Hello!' message and close
