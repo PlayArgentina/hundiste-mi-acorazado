@@ -14,4 +14,16 @@ case class Board(tiles:List[List[Tile]]) {
     }
     
   }
+  object Board{
+    def generateBoard:List[List[Tile]]={
+
+      for (i <- 1 until 10){
+
+        for (j <- 1 until 10){
+
+        }
+      }
+
+    }
+  }
 }

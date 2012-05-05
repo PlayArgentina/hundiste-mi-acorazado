@@ -1,7 +1,7 @@
 package controllers
 
 import play.api._
-import libs.iteratee.{Enumerator, Iteratee}
+import libs.iteratee.{PushEnumerator, Enumerator, Iteratee}
 import libs.json.JsValue
 import play.api.mvc._
 import models.{Board}
@@ -16,7 +16,9 @@ object Application extends Controller {
     username.filterNot(_.isEmpty).map { username =>
 
     if(GameController.addPlayer(username)){
+
     Ok(views.html.battleRoom(username))
+
     }else{
       Redirect(routes.Application.index).flashing(
         "error" -> "Battle is full");
@@ -29,16 +31,12 @@ object Application extends Controller {
   }
 
 
-  def shoot(username: String) = WebSocket.using[String] { request  =>
-    /*var members = Map.empty[String, PushEnumerator[JsValue]]
-    members = members + (username -> channel)*/
-    BoardManager.setChannelForUser(username,chanel);
-    val in =  Iteratee.foreach[String](s => GameController.parse(username,s))
-    //pasar a shoot
-    // Send a single 'Hello!' message and close
-    val out = Enumerator("hello")
+  def connect(username: String) = WebSocket.using[String] { request  =>
 
-   // Board.join(username)
+    val out : PushEnumerator[String] = Enumerator.imperative[String]()
+    GameController.addPlayer(username, out)
+    val in =  Iteratee.foreach[String](s => GameController.parse(username,s))
+
     (in, out)
   }
   
