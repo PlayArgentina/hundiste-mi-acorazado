@@ -8,7 +8,7 @@ import models.{ShootResult, Tile, Board}
 
 object BoardController extends Controller {
 
-  val board = Board(Board.createBoard)
+  val board = Board(List[List[Tile]])
 
   def shoot(tileId:String) ={
     val position = tileId.split(",").map{s => s.toInt}

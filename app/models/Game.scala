@@ -7,24 +7,33 @@ class Game {
 
 
 
-  var members = Map.empty[String, PushEnumerator[String]]
-  var player1: String = "";
-  var player2: String = "";
-  var board=Board(Board.  createBoard);
+  var players = Map.empty[String, PushEnumerator[String]]
+ // var boards = Map.empty[String, Board]
+  var player1: String ="";
+  var player2: String ="";
+
 
   def addPlayer(username: String , out : PushEnumerator[String]) = {
 
-    members + (username -> out)
+    players + (username -> out)
 
   }
 
   def calculateShot(s: String){
+    //boards{s}.calculateoutcome
+    players{s}.push("nice shot")
+    if (player1.equals(s)){
+        players{player2}.push("your getting shot")
+    }else{
+      players{player1}.push("your getting shot")
+    }
+
 
 
   }
 
   def notYourTurn(s: String){
-    members{s}.push("not your turn motherfucker")
+    players{s}.push("not your turn motherfucker")
   }
 
 

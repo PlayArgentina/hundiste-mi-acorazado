@@ -1,5 +1,3 @@
 package models
 
-case class Tile( var id:String,   var alreadyFired:Boolean)  {
-  var ship:Ship
-}
+case class Tile(id:String, ship:Ship,  alreadyFired:Boolean)

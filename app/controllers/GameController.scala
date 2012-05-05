@@ -3,20 +3,18 @@ package controllers
 
 import play.api._
 import libs.iteratee.PushEnumerator
-import libs.json.JsValue
 import play.api.mvc._
-import models.Board._
-import models.{Game, Board, Tile}
+import models.{Game, Tile}
 
 object GameController extends Controller {
 
 
   val game = new Game
   var currentPlayer = "";
-  //def parse(username: String, shot : String) = TODO
-  def parse(username: String, shot: String) {
+  def parse(username: String, shot: String)= {
     if (username.equals(currentPlayer)){
       game.calculateShot(username);
+
     }else{
       game.notYourTurn(username);
     }
@@ -25,12 +23,12 @@ object GameController extends Controller {
 
   }
 
-  def addPlayer(s: String,out : PushEnumerator[String]){
+  def addPlayer(s: String,out : PushEnumerator[String])={
      game.addPlayer(s,out)
   }
 
 
-  def addPlayer(userName : String):Boolean={
+  def checkIfGameAvailable(userName : String):Boolean ={
     if (game.player1 != Nil){
       game.player1 = userName
       true
