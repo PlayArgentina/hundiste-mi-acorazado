@@ -7,10 +7,14 @@ class Game {
 
 
 
+
+
+  var player1: String = "";
+  var player2: String = "";
   var players = Map.empty[String, PushEnumerator[String]]
  // var boards = Map.empty[String, Board]
-  var player1: String ="";
-  var player2: String ="";
+
+
 
 
   def addPlayer(username: String , out : PushEnumerator[String]) = {
