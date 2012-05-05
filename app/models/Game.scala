@@ -15,8 +15,6 @@ class Game {
  // var boards = Map.empty[String, Board]
 
 
-
-
   def addPlayer(username: String , out : PushEnumerator[String]) = {
 
     players + (username -> out)

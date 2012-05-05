@@ -29,8 +29,8 @@ object GameController extends Controller {
 
 
 
-  def checkIfGameAvailable(userName : String):Boolean ={
 
+  def checkIfGameAvailable(userName : String):Boolean ={
     if (game.player1 != Nil){
       game.player1 = userName
       true
