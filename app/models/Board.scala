@@ -25,7 +25,7 @@ object Board{
       for (i <- 1 until 10){
         var row:List[Tile] = List[Tile]()
         for (j <- 1 until 10){
-            row =Tile(""+i+","+j,false)::row
+            row =Tile(""+i+","+j,null,false)::row
         }
         lists=row ::lists
       }
